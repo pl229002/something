@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>Robot Control Center</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+  </head>
+  <body>
+  <div class="grid">
+      <h1 class="mainHeader">Robot Control Center</h1>
+      <div class="video">
+        <h2>Live Feed</h2>
+        <img class="videoFrame" src="{{ url_for('video_feed') }}">
+        {% if directional != "" %}
+            <img class="arrow" src="{{url_for('static', filename=directional)}}">
+        {%  endif %}
+      </div>
+    <div class="controls">
+        <h2>Central Control</h2>
+        <form method="POST">
+            <fieldset class="float-label-field">
+                <label for="moveForward">Move Forward:</label><br>
+                <input type="text" id="moveForward" name="moveForward"><br>
+                <input type="submit" name="forwardSubmit" value="Move Forward"><br>
+            </fieldset>
+
+            <fieldset class="float-label-field">
+                <label for="moveBackward">Move Backward:</label><br>
+                <input type="text" id="moveBackward" name="moveBackward"><br>
+                <input type="submit" name="backwardSubmit" value="Move Backward"><br>
+            </fieldset>
+
+            <fieldset class="float-label-field">
+                <label for="moveLeft">Move Left:</label><br>
+                <input type="text" id="moveLeft" name="moveLeft"><br>
+                <input type="submit" name="leftSubmit" value="Move Left"><br>
+            </fieldset>
+
+            <fieldset class="float-label-field">
+                <label for="moveRight">Move Right:</label><br>
+                <input type="text" id="moveRight" name="moveRight"><br>
+                <input type="submit" name="rightSubmit" value="Move Right"><br>
+            </fieldset>
+
+            <input class="exit" type="submit" name="exit" value="Exit Session"><br>
+        </form>
+    </div>
+    <div class="console">
+        <h2>Console Output</h2>
+        <textarea rows="30" cols="100" readonly>
+            {% for o in console %}
+                {{ o }}
+            {% endfor %}
+        </textarea>
+    </div>
+  </div>
+  </body>
+</html>

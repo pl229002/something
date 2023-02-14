@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register to Command Center</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+</head>
+<body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              <div class="alert">
+            {% for category, message in messages %}
+              <div class=”alert alert-{{ category }}” id=”div_flash” >
+                {{ message }}
+              </div>
+            {% endfor %}
+              </div>
+          {% endif %}
+        {% endwith %}
+
+    <div class="roundedBackground">
+        <form method="POST">
+            <h1>Register</h1>
+
+            <fieldset class="float-label-field">
+            <label for="uname">Username:</label><br>
+            <input type="text" id="uname" name="uname"><br>
+            </fieldset>
+
+            <fieldset class="float-label-field">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            </fieldset>
+
+            <input type="submit" value="Register">
+        </form>
+        <br>
+        <a href="{{ url_for('login') }}"><button>Already Registered?</button></a>
+    </div>
+</body>
+</html>
